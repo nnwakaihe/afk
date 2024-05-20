@@ -18,3 +18,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# #Run the following command in the terminal to create executable:
+# pyinstaller --name afk main.py
