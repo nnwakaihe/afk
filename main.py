@@ -3,18 +3,30 @@ import random
 import time
 
 def main():
+    time.sleep(5)      #wait 10 sec before starting
     current_position = pag.position()
 
     while True:
-        if pag.position() != current_position:
-            break
-
-        x = random.randint(600,700)
-        y = random.randint(200,600)
-        pag.moveTo(x,y,0.5)
-        #time.sleep(120)
+        last_position = pag.position()
+        time.sleep(60)  #Check position every ... sec
         current_position = pag.position()
-        time.sleep(2)
+        if last_position == current_position:
+            active = True
+            print("Turning ON")
+
+        while active:
+            if pag.position() != current_position:  #If mouse moved manually
+                print("Turning OFF")
+                active = False
+                break
+
+            x = random.randint(600,700)
+            y = random.randint(200,600)
+            pag.moveTo(x,y,0.5)
+            pag.keyDown('up')
+            pag.keyUp('up')
+            current_position = pag.position()
+            time.sleep(2) #Move every ... sec
 
 if __name__ == "__main__":
     main()
