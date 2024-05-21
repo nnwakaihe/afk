@@ -14,7 +14,7 @@ def main():
             active = True
             print("Turning ON")
 
-        while active:
+        while active == True:
             if pag.position() != current_position:  #If mouse moved manually
                 print("Turning OFF")
                 active = False
