@@ -6,6 +6,8 @@ def main():
     time.sleep(5)      #wait 10 sec before starting
     current_position = pag.position()
 
+    active = False  # Initialize active here
+
     while True:
         last_position = pag.position()
         time.sleep(60)  #Check position every ... sec
