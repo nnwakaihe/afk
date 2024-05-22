@@ -4,7 +4,7 @@ import time
 
 def main():
     # Time variables
-    startup_delay = 5
+    startup_delay = 1
     position_check_timer = 120
     movement_timer = 60
 
@@ -20,19 +20,21 @@ def main():
         current_position = pag.position()
         if last_position == current_position:
             active = True
-            print("Turning ON")
+            current_time = time.strftime("%I:%M:%S %p")
+            print(f"Turning ON {current_time}")
 
         while active == True:
             if pag.position() != current_position:  #If mouse moved manually
-                print("Turning OFF")
+                current_time = time.strftime("%I:%M:%S %p")
+                print(f"Turning OFF {current_time}")
                 active = False
                 break
 
             x = random.randint(100,150)
             y = random.randint(100,150)
-            pag.moveTo(x,y,0.5)
-            pag.keyDown('f13')
-            pag.keyUp('f13')
+            # pag.moveTo(x,y,0.5)
+            pag.keyDown('f15')
+            pag.keyUp('f15')
             current_position = pag.position()
             time.sleep(movement_timer) #Move every ... sec
 
