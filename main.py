@@ -3,14 +3,20 @@ import random
 import time
 
 def main():
-    time.sleep(5)      #wait 10 sec before starting
+    # Time variables
+    startup_delay = 5
+    position_check_timer = 120
+    movement_timer = 60
+
+    time.sleep(startup_delay)      #wait 10 sec before starting
+    print("Booting Up...")
     current_position = pag.position()
 
     active = False  # Initialize active here
 
     while True:
         last_position = pag.position()
-        time.sleep(60)  #Check position every ... sec
+        time.sleep(position_check_timer)  #Check position every ... sec
         current_position = pag.position()
         if last_position == current_position:
             active = True
@@ -22,13 +28,13 @@ def main():
                 active = False
                 break
 
-            x = random.randint(600,700)
-            y = random.randint(200,600)
+            x = random.randint(100,150)
+            y = random.randint(100,150)
             pag.moveTo(x,y,0.5)
-            pag.keyDown('up')
-            pag.keyUp('up')
+            pag.keyDown('f13')
+            pag.keyUp('f13')
             current_position = pag.position()
-            time.sleep(2) #Move every ... sec
+            time.sleep(movement_timer) #Move every ... sec
 
 if __name__ == "__main__":
     main()
